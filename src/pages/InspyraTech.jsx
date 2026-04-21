@@ -383,20 +383,27 @@ function About() {
 
 function Contact() {
 
-  const handleSubmit = () => {
-    const nombre = document.querySelector('input[placeholder="Nombre"]').value;
-    const empresa = document.querySelector('input[placeholder="Empresa"]').value;
-    const email = document.querySelector('input[type="email"]').value;
-    const servicio = document.querySelector('select').value;
-    const mensaje = document.querySelector('textarea').value;
+  const handleSubmit = (e) => {
+    e.preventDefault(); // evita recargar
+
+    const form = e.target;
+
+    // valida automáticamente los campos required
+    if (!form.checkValidity()) {
+      form.reportValidity(); // muestra errores nativos
+      return;
+    }
+
+    const nombre = form.nombre.value;
+    const empresa = form.empresa.value;
+    const email = form.email.value;
+    const servicio = form.servicio.value;
+    const mensaje = form.mensaje.value;
 
     const texto = `Hola, soy ${nombre}%0AEmpresa: ${empresa}%0AEmail: ${email}%0AServicio: ${servicio}%0AMensaje: ${mensaje}`;
+    const telefono = "573202594521";
 
-    const telefono = "573202594521"; // ← tu número (con código país sin +)
-
-    const url = `https://wa.me/${telefono}?text=${texto}`;
-
-    window.open(url, "_blank");
+    window.open(`https://wa.me/${telefono}?text=${texto}`, "_blank");
   };
 
   return (
@@ -404,15 +411,22 @@ function Contact() {
       <p className="section__label">CONTACTO</p>
       <h2 className="section__title">Hablemos de tu proyecto.</h2>
 
-      <div className="contact__form">
+      <form className="contact__form" onSubmit={handleSubmit}>
         <div className="contact__row">
-          <input className="contact__input" placeholder="Nombre" />
-          <input className="contact__input" placeholder="Empresa" />
+          <input name="nombre" className="contact__input" placeholder="Nombre" required />
+          <input name="empresa" className="contact__input" placeholder="Empresa" required />
         </div>
 
-        <input className="contact__input" type="email" placeholder="Email" />
+        <input
+          name="email"
+          className="contact__input"
+          type="email"
+          placeholder="Email"
+          required
+        />
 
-        <select className="contact__select">
+        <select name="servicio" className="contact__select" required>
+          <option value="">Selecciona un servicio</option>
           <option>Desarrollo Web</option>
           <option>App Móvil</option>
           <option>Sistema a Medida</option>
@@ -421,14 +435,16 @@ function Contact() {
         </select>
 
         <textarea
+          name="mensaje"
           className="contact__textarea"
           placeholder="Cuéntanos sobre tu proyecto..."
+          required
         />
 
-        <button onClick={handleSubmit} className="btn btn--gradient">
+        <button type="submit" className="btn btn--gradient">
           Enviar mensaje →
         </button>
-      </div>
+      </form>
     </section>
   );
 }
