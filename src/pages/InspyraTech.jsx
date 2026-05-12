@@ -39,7 +39,7 @@ const EN = {
     link: "View case →",
     items: [
       { name: "KyboApp", type: "Mobile · Finance", year: "2026", color: "#008CFA", desc: "Personal finance app to manage income, expenses, goals, and debts.", url: "https://kyboapp.com/" },
-      { name: "7Nnoticias", type: "News Platform", year: "2026", color: "#108975", desc: "Digital news platform with real-time integrations and modern design.", url: "https://www.7nnoticias.com/" },
+      { name: "7Nnoticias", type: "News Platform", year: "2026", color: "#108975", desc: "Digital news platform with real-time integrations and modern design.", url: "https://www.7nnoticias.com/new" },
       { name: "REM", type: "Health", year: "2026", color: "#0a7fc2", desc: "Comprehensive management system for biomedical companies.", url: "https://www.remequipos.com.co/" },
     ],
   },
@@ -124,7 +124,7 @@ const ES = {
     link: "Ver caso →",
     items: [
       { name: "KyboApp", type: "Móvil · Finanzas", year: "2026", color: "#008CFA", desc: "App para gestionar tus finanzas personales: controla ingresos, gastos, metas y deudas.", url: "https://kyboapp.com/" },
-      { name: "7Nnoticias", type: "Plataforma de Noticias", year: "2026", color: "#108975", desc: "Plataforma digital de noticias con integraciones en tiempo real y diseño moderno.", url: "https://www.7nnoticias.com/" },
+      { name: "7Nnoticias", type: "Plataforma de Noticias", year: "2026", color: "#108975", desc: "Plataforma digital de noticias con integraciones en tiempo real y diseño moderno.", url: "https://www.7nnoticias.com/new" },
       { name: "REM", type: "Salud", year: "2026", color: "#0a7fc2", desc: "Sistema integral de gestión para empresas biomédicas.", url: "https://www.remequipos.com.co/" },
     ],
   },
