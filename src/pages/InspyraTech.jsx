@@ -446,14 +446,16 @@ function ServiceAnim({ type }) {
   switch (type) {
     case "terminal":
       return (
-        <div className="sa sa--terminal">
-          <div className="sa__head"><span /><span /><span /></div>
-          <div className="sa__body">
-            {["$ inspyra dev", "> building...", "✓ compiled"].map((t, i) => (
-              <span key={i} className="sa__ln">{t}</span>
-            ))}
-            <span className="sa__cur">▌</span>
+        <div className="sa sa--laptop">
+          <div className="sa__laptop">
+            <div className="sa__laptop-screen">
+              <div className="sa__laptop-bar" />
+              <div className="sa__laptop-bar" />
+              <div className="sa__laptop-bar" />
+              <div className="sa__laptop-bar" />
+            </div>
           </div>
+          <div className="sa__laptop-base" />
         </div>
       );
     case "phone":
