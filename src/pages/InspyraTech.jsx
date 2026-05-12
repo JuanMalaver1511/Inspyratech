@@ -174,6 +174,8 @@ const ES = {
   },
 };
 
+const SECTION_IDS = ["home", "services", "projects", "about", "contact"];
+
 const TEAM = [
   { name: "Juan Malaver", role: "Founder", image: juanImg },
   { name: "Sebastian Guevara", role: "Founder", image: sebasImg },
@@ -254,7 +256,7 @@ function Cursor({ theme }) {
     const hoverable = { cursor: "pointer" };
     const grow = () => ringRef.current?.classList.add("cursor__ring--grow");
     const shrink = () => ringRef.current?.classList.remove("cursor__ring--grow");
-    document.querySelectorAll("a, button, input, select, textarea, .service-card, .project-card, .team-card").forEach((el) => {
+    document.querySelectorAll("a, button, input, select, textarea, .hub__tab, .hub__panel, .project-card, .team-card").forEach((el) => {
       el.addEventListener("mouseenter", grow);
       el.addEventListener("mouseleave", shrink);
     });
@@ -263,7 +265,7 @@ function Cursor({ theme }) {
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseleave", onLeave);
       cancelAnimationFrame(raf);
-      document.querySelectorAll("a, button, input, select, textarea, .service-card, .project-card, .team-card").forEach((el) => {
+      document.querySelectorAll("a, button, input, select, textarea, .hub__tab, .hub__panel, .project-card, .team-card").forEach((el) => {
         el.removeEventListener("mouseenter", grow);
         el.removeEventListener("mouseleave", shrink);
       });
@@ -338,21 +340,28 @@ function LangToggle({ lang, onToggle }) {
 
 function Navbar({ activeSection, onNav, theme, onThemeToggle, lang, onLangToggle }) {
   const scrolled = useScrolled();
+  const { t } = useLang();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleNav = (id) => {
+    onNav(id);
+    setMenuOpen(false);
+  };
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-      <button className="navbar__logo" onClick={() => onNav("home")}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""} ${menuOpen ? "navbar--menu-open" : ""}`}>
+      <button className="navbar__logo" onClick={() => handleNav("home")}>
         <div className="navbar__logo-icon">
           <img src={logo} alt="Inspyratech" />
         </div>
       </button>
 
-      <ul className="navbar__links">
-        {useLang().t("nav").map((link, i) => (
+      <ul className={`navbar__links ${menuOpen ? "navbar__links--open" : ""}`}>
+        {t("nav").map((link, i) => (
           <li key={i}>
             <button
               className={`navbar__link ${activeSection === i ? "active" : ""}`}
-              onClick={() => onNav(link.toLowerCase())}
+              onClick={() => handleNav(SECTION_IDS[i])}
             >
               {link}
             </button>
@@ -363,8 +372,15 @@ function Navbar({ activeSection, onNav, theme, onThemeToggle, lang, onLangToggle
       <div className="navbar__right">
         <LangToggle lang={lang} onToggle={onLangToggle} />
         <ThemeToggle theme={theme} onToggle={onThemeToggle} />
-        <button className="navbar__cta" onClick={() => onNav("contact")}>
-          {useLang().t("hero").cta1}
+        <button className="navbar__cta navbar__cta--desktop" onClick={() => handleNav("contact")}>
+          {t("hero").cta1}
+        </button>
+        <button
+          className={`navbar__hamburger ${menuOpen ? "navbar__hamburger--open" : ""}`}
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menu"
+        >
+          <span /><span /><span />
         </button>
       </div>
     </nav>
@@ -426,32 +442,148 @@ function Hero({ onNav }) {
   );
 }
 
+function ServiceAnim({ type }) {
+  switch (type) {
+    case "terminal":
+      return (
+        <div className="sa sa--terminal">
+          <div className="sa__head"><span /><span /><span /></div>
+          <div className="sa__body">
+            {["$ inspyra dev", "> building...", "✓ compiled"].map((t, i) => (
+              <span key={i} className="sa__ln">{t}</span>
+            ))}
+            <span className="sa__cur">▌</span>
+          </div>
+        </div>
+      );
+    case "phone":
+      return (
+        <div className="sa sa--phone">
+          <div className="sa__phone">
+            <div className="sa__phone-notch" />
+            <div className="sa__phone-screen">
+              {[1, 2, 3].map(i => <span key={i} className="sa__phone-bar" />)}
+            </div>
+          </div>
+        </div>
+      );
+    case "server":
+      return (
+        <div className="sa sa--server">
+          {[1, 2, 3].map(i => (
+            <div key={i} className="sa__tray">
+              <span className="sa__led" /><span className="sa__tray-bar" />
+            </div>
+          ))}
+        </div>
+      );
+    case "design":
+      return (
+        <div className="sa sa--design">
+          <div className="sa__frame">
+            <div className="sa__frame-side" />
+            <div className="sa__frame-main">
+              <div className="sa__frame-block" />
+              <div className="sa__frame-block" />
+            </div>
+          </div>
+        </div>
+      );
+    case "graph":
+      return (
+        <div className="sa sa--graph">
+          <div className="sa__graph-bg">
+            {Array.from({length: 15}).map((_, i) => <span key={i} />)}
+          </div>
+          <svg viewBox="0 0 180 100" className="sa__svg">
+            <defs>
+              <linearGradient id="graphGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.3" />
+                <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            <polygon className="sa__svg-area" points="0,100 0,70 22,52 38,58 58,35 75,40 95,20 120,28 140,10 180,10 180,100" />
+            <polyline className="sa__svg-line"
+              points="0,70 22,52 38,58 58,35 75,40 95,20 120,28 140,10 180,10"
+            />
+          </svg>
+        </div>
+      );
+    case "cloud":
+      return (
+        <div className="sa sa--cloud">
+          <div className="sa__cloud-orbit" />
+          <svg viewBox="0 0 100 60" className="sa__svg-cloud">
+            <path className="sa__svg-cloud-body"
+              d="M20 45Q5 45 5 32Q5 18 22 18Q25 8 45 8Q62 8 65 20Q75 20 80 28Q80 45 65 45Z"
+            />
+            <circle className="sa__svg-dot" cx="40" cy="30" r="3" />
+            <circle className="sa__svg-dot" cx="55" cy="32" r="2.5" />
+            <circle className="sa__svg-dot" cx="65" cy="28" r="2" />
+          </svg>
+        </div>
+      );
+    default:
+      return null;
+  }
+}
+
 function Services({ onNav }) {
   const { t } = useLang();
   const s = t("services");
+  const [active, setActive] = useState(0);
+  const panelRef = useRef(null);
+
+  useEffect(() => {
+    const el = panelRef.current;
+    if (!el) return;
+    const onMove = (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${((e.clientX - r.left) / r.width) * 100}%`);
+      el.style.setProperty("--my", `${((e.clientY - r.top) / r.height) * 100}%`);
+    };
+    el.addEventListener("mousemove", onMove);
+    return () => el.removeEventListener("mousemove", onMove);
+  }, [active]);
 
   return (
-    <section id="services" className="section">
-      <div className="section__header">
+    <section id="services" className="section section--alt">
+      <div className="section__header" style={{ marginBottom: 0 }}>
         <div>
           <p className="section__label">{s.label}</p>
           <h2 className="section__title">{s.title}</h2>
-          <p className="section__subtitle">{s.subtitle}</p>
         </div>
-        <button className="btn btn--outline-sm" onClick={() => onNav("contact")}>
-          {s.cta}
-        </button>
       </div>
 
-      <div className="services__grid">
-        {s.items.map((item, i) => (
-          <div key={i} className="service-card">
-            <div className="service-card__icon">{item.icon}</div>
-            <p className="service-card__tag">{item.tag}</p>
-            <h3 className="service-card__title">{item.title}</h3>
-            <p className="service-card__desc">{item.desc}</p>
+      <div className="hub">
+        <div className="hub__tabs">
+          {s.items.map((item, i) => (
+            <button
+              key={i}
+              className={`hub__tab ${active === i ? "hub__tab--on" : ""}`}
+              onClick={() => setActive(i)}
+            >
+              {item.title}
+            </button>
+          ))}
+        </div>
+
+        <div className="hub__panel" key={active} ref={panelRef}>
+          <div className="hub__panel-shine" />
+          <div className="hub__panel-inner">
+            <div className="hub__panel-vis">
+              <ServiceAnim type={["terminal", "phone", "server", "design", "graph", "cloud"][active]} />
+            </div>
+            <div className="hub__panel-info">
+              <div className="hub__panel-head">
+                <span className="hub__panel-icon">{s.items[active].icon}</span>
+                <span className="hub__panel-tag">{s.items[active].tag}</span>
+              </div>
+              <h3 className="hub__panel-title">{s.items[active].title}</h3>
+              <p className="hub__panel-desc">{s.items[active].desc}</p>
+            </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
   );
@@ -623,7 +755,7 @@ function Footer({ onNav }) {
       <p className="footer__tagline">{f.tagline}</p>
       <nav className="footer__nav">
         {useLang().t("nav").map((link, i) => (
-          <button key={i} className="footer__nav-link" onClick={() => onNav(link.toLowerCase())}>
+          <button key={i} className="footer__nav-link" onClick={() => onNav(SECTION_IDS[i])}>
             {link}
           </button>
         ))}
@@ -640,8 +772,7 @@ export default function InspyraTech() {
   const [lang, setLang] = useState(() => localStorage.getItem("inspyra-lang") || "en");
 
   const t = useCallback((key) => {
-    const data = lang === "en" ? EN : ES;
-    return key.split(".").reduce((acc, k) => acc?.[k], data);
+    return (lang === "en" ? EN : ES)[key];
   }, [lang]);
 
   useEffect(() => {
@@ -658,8 +789,8 @@ export default function InspyraTech() {
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    const match = t("nav").findIndex((l) => l.toLowerCase() === id);
-    if (match >= 0) setActiveSection(match);
+    const idx = SECTION_IDS.indexOf(id);
+    if (idx >= 0) setActiveSection(idx);
   };
 
   return (
