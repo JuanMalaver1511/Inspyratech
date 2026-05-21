@@ -768,6 +768,29 @@ function Footer({ onNav }) {
   );
 }
 
+function WhatsappFloat() {
+  return (
+    <a
+      href="https://wa.me/573054681323"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="whatsapp-float"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="whatsapp-float__icon">
+        <rect x="4" y="6" width="16" height="13" rx="3" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.12"/>
+        <circle cx="9" cy="12" r="1.5" fill="currentColor"/>
+        <circle cx="15" cy="12" r="1.5" fill="currentColor"/>
+        <rect x="10" y="14" width="4" height="2" rx="1" fill="currentColor" opacity="0.5"/>
+        <path d="M9 19v2M15 19v2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M4 9h16" stroke="currentColor" strokeWidth="1.5" opacity="0.3"/>
+        <rect x="7" y="4" width="10" height="3" rx="1.5" fill="currentColor" opacity="0.2"/>
+        <circle cx="12" cy="5" r="1" fill="currentColor" opacity="0.3"/>
+      </svg>
+    </a>
+  );
+}
+
 export default function InspyraTech() {
   const [activeSection, setActiveSection] = useState(0);
   const [theme, setTheme] = useState(() => localStorage.getItem("inspyra-theme") || "dark");
@@ -815,6 +838,7 @@ export default function InspyraTech() {
         <Contact />
       </main>
       <Footer onNav={scrollTo} />
+      <WhatsappFloat />
     </LangContext.Provider>
   );
 }
