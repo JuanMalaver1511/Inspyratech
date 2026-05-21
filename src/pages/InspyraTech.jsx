@@ -714,7 +714,7 @@ function Contact() {
     const servicio = form.servicio.value;
     const mensaje = form.mensaje.value;
     const texto = `Hi, I'm ${nombre}%0ACompany: ${empresa}%0AEmail: ${email}%0AService: ${servicio}%0AMessage: ${mensaje}`;
-    window.open(`https://wa.me/573202594521?text=${texto}`, "_blank");
+    window.open(`https://wa.me/573054681323?text=${texto}`, "_blank");
   };
 
   return (
