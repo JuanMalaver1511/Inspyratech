@@ -682,20 +682,7 @@ function About() {
         <Terminal lines={t("terminal").lines} />
       </div>
 
-      <h3 className="team__title">{a.teamTitle}</h3>
-      <div className="team__grid">
-        {TEAM.map((member) => (
-          <div key={member.name} className="team-card" data-cursor>
-            <div className="team-card__avatar">
-              <img src={member.image} alt={member.name} />
-            </div>
-            <div className="team-card__content">
-              <p className="team-card__name">{member.name}</p>
-              <p className="team-card__role">{member.role}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+
     </section>
   );
 }
