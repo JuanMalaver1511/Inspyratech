@@ -27,7 +27,7 @@ const EN = {
       { icon: "</>", tag: "Web", title: "Web Development", desc: "Fast, secure, and scalable websites and platforms built with modern technologies." },
       { icon: "◉", tag: "Mobile", title: "Mobile Apps", desc: "Native iOS and Android with a fluid experience. User-centered design from day one." },
       { icon: "◈", tag: "Enterprise", title: "Custom Systems", desc: "ERPs, dashboards, and internal tools that fit your workflow perfectly." },
-      { icon: "⬡", tag: "Design", title: "UX/UI Design", desc: "Interfaces that delight. User research, prototyping, and cohesive design systems." },
+      { icon: "⬡", tag: "AI", title: "Custom AI Agents", desc: "Intelligent agents tailored to your business — automate workflows, answer questions, and make decisions with the power of AI." },
       { icon: "⟳", tag: "Strategy", title: "Tech Consulting", desc: "Digital strategy, software architecture, and tech transformation guidance." },
       { icon: "◈", tag: "Cloud", title: "Cloud & DevOps", desc: "Scalable infrastructure, CI/CD pipelines, and 24/7 monitoring for maximum uptime." },
     ],
@@ -40,7 +40,7 @@ const EN = {
     items: [
       { name: "KyboApp", type: "Mobile · Finance", year: "2026", color: "#008CFA", desc: "Personal finance app to manage income, expenses, goals, and debts.", url: "https://kyboapp.com/" },
       { name: "7Nnoticias", type: "News Platform", year: "2026", color: "#108975", desc: "Digital news platform with real-time integrations and modern design.", url: "https://www.7nnoticias.com/new" },
-      { name: "REM", type: "Health", year: "2026", color: "#0a7fc2", desc: "Comprehensive management system for biomedical companies.", url: "https://www.remequipos.com.co/" },
+      { name: "LUCI", type: "AI Platform", year: "2026", color: "#7c3aed", desc: "Platform to build, deploy, and manage custom AI agents — automate tasks, integrate with your tools, and scale intelligence across your business.", url: "https://inspy-production.up.railway.app/login" },
     ],
   },
   about: {
@@ -112,7 +112,7 @@ const ES = {
       { icon: "</>", tag: "Web", title: "Desarrollo Web", desc: "Sitios y plataformas rápidas, seguras y escalables construidas con tecnologías modernas." },
       { icon: "◉", tag: "Mobile", title: "Apps Móviles", desc: "iOS y Android nativos con experiencia fluida. Diseño centrado en el usuario." },
       { icon: "◈", tag: "Enterprise", title: "Sistemas a Medida", desc: "ERPs, dashboards y herramientas internas que se adaptan a tu flujo de trabajo." },
-      { icon: "⬡", tag: "Design", title: "Diseño UX/UI", desc: "Interfaces que enamoran. Investigación de usuarios, prototipado y sistemas de diseño." },
+      { icon: "⬡", tag: "IA", title: "Agentes de IA Personalizados", desc: "Agentes inteligentes adaptados a tu negocio — automatiza flujos de trabajo, responde preguntas y toma decisiones con el poder de la IA." },
       { icon: "⟳", tag: "Strategy", title: "Consultoría Tech", desc: "Estrategia digital, arquitectura de software y transformación tecnológica." },
       { icon: "◈", tag: "Cloud", title: "Cloud & DevOps", desc: "Infraestructura escalable, pipelines CI/CD y monitoreo 24/7 para máximo uptime." },
     ],
@@ -125,7 +125,7 @@ const ES = {
     items: [
       { name: "KyboApp", type: "Móvil · Finanzas", year: "2026", color: "#008CFA", desc: "App para gestionar tus finanzas personales: controla ingresos, gastos, metas y deudas.", url: "https://kyboapp.com/" },
       { name: "7Nnoticias", type: "Plataforma de Noticias", year: "2026", color: "#108975", desc: "Plataforma digital de noticias con integraciones en tiempo real y diseño moderno.", url: "https://www.7nnoticias.com/new" },
-      { name: "REM", type: "Salud", year: "2026", color: "#0a7fc2", desc: "Sistema integral de gestión para empresas biomédicas.", url: "https://www.remequipos.com.co/" },
+      { name: "LUCI", type: "Plataforma IA", year: "2026", color: "#7c3aed", desc: "Plataforma para construir, desplegar y gestionar agentes de IA personalizados — automatiza tareas, intégrate con tus herramientas y escala la inteligencia en tu negocio.", url: "https://inspy-production.up.railway.app/login" },
     ],
   },
   about: {
