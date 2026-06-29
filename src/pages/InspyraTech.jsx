@@ -72,11 +72,11 @@ const EN = {
   },
   footer: {
     tagline: "Software that inspires real results.",
-    copyright: "© 2025 InspyraTech. All rights reserved.",
+    copyright: "© 2025 Lucid. All rights reserved.",
   },
   terminal: {
     lines: [
-      { text: "$ inspyra init --project=your-idea", delay: 0, type: "default" },
+      { text: "$ lucid init --project=your-idea", delay: 0, type: "default" },
       { text: "> Analyzing requirements...", delay: 800, type: "muted" },
       { text: "> Designing optimal architecture...", delay: 1800, type: "muted" },
       { text: "> Assigning specialized team...", delay: 2800, type: "muted" },
@@ -157,11 +157,11 @@ const ES = {
   },
   footer: {
     tagline: "Software que inspira resultados reales.",
-    copyright: "© 2025 InspyraTech. Todos los derechos reservados.",
+    copyright: "© 2025 Lucid. Todos los derechos reservados.",
   },
   terminal: {
     lines: [
-      { text: "$ inspyra init --project=tu-idea", delay: 0, type: "default" },
+      { text: "$ lucid init --project=tu-idea", delay: 0, type: "default" },
       { text: "> Analizando requerimientos...", delay: 800, type: "muted" },
       { text: "> Diseñando arquitectura óptima...", delay: 1800, type: "muted" },
       { text: "> Asignando equipo especializado...", delay: 2800, type: "muted" },
@@ -638,7 +638,7 @@ function Terminal({ lines }) {
           <span className="terminal__dot" style={{ background: "#ff5f57" }} />
           <span className="terminal__dot" style={{ background: "#febe2e" }} />
           <span className="terminal__dot" style={{ background: "#28ca41" }} />
-          <span className="terminal__title">inspyra — bash</span>
+          <span className="terminal__title">lucid — bash</span>
         </div>
         <div className="terminal__body">
           {lines.map((line, i) =>
@@ -756,10 +756,10 @@ function Footer({ onNav }) {
 }
 
 
-export default function InspyraTech() {
+export default function Lucid() {
   const [activeSection, setActiveSection] = useState(0);
-  const [theme, setTheme] = useState(() => localStorage.getItem("inspyra-theme") || "dark");
-  const [lang, setLang] = useState(() => localStorage.getItem("inspyra-lang") || "en");
+  const [theme, setTheme] = useState(() => localStorage.getItem("lucid-theme") || "dark");
+  const [lang, setLang] = useState(() => localStorage.getItem("lucid-lang") || "en");
 
   const t = useCallback((key) => {
     return (lang === "en" ? EN : ES)[key];
@@ -767,11 +767,11 @@ export default function InspyraTech() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("inspyra-theme", theme);
+    localStorage.setItem("lucid-theme", theme);
   }, [theme]);
 
   useEffect(() => {
-    localStorage.setItem("inspyra-lang", lang);
+    localStorage.setItem("lucid-lang", lang);
   }, [lang]);
 
   const toggleTheme = () => setTheme((p) => (p === "dark" ? "light" : "dark"));
